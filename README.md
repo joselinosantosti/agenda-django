@@ -1,2 +1,2 @@
-# agenda-django
+# Agenda
 Agenda para registro de contatos
