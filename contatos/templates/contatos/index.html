@@ -15,15 +15,15 @@
         </tr>
     </thead>
     <tbody>
+        {% for contato in contatos %}
         <tr>
-            <td>1</td>
-            <td>
-            Nome contato
-            </td>
-            <td>Sobrenome</td>
-            <td>99998888</td>
-            <td>Amigos</td>
-        </tr>
+            <td>{{contato.id}}</td>
+            <td><a href="#"> {{contato.nome}}</a></td>
+            <td>{{contato.sobrenome}}</td>
+            <td>{{contato.telefone}}</td>
+            <td>{{contato.categoria}}</td>
+          </tr>
+        {% endfor %}
     </tbody>
     </table>
 </div>
