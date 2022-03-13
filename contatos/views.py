@@ -4,7 +4,7 @@ from django.http import Http404
 from django.core.paginator import Paginator
 
 def index(request):
-    contatos = Contato.objects.all()
+    contatos = Contato.objects.order_by('id').filter(mostrar=True)
     paginator = Paginator(contatos, 10)
     page = request.GET.get('p')
     total = request.GET.get('total')
