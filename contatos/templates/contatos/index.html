@@ -4,6 +4,15 @@
 
     <h1 class="mt-5">Minha agenda</h1>
 
+    <form action="{% url 'busca' %}" class="mt-5">
+      <div class="input-group mb-3">
+        <input type="text" name="busca" class="form-control" placeholder="Pesquisar" value="{{ request.GET.busca }}">
+        <div class="input-group-append">
+          <button class="input-group-text bg-primary text-white">Buscar</button>
+        </div>
+      </div>
+    </form>
+
     <table class="table">
     <thead>
         <tr>
