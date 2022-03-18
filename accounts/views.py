@@ -23,7 +23,7 @@ def login(request):
     else:
         auth.login(request, user)
         messages.success(request, 'Logado com sucesso')
-        return redirect('dashboard')
+        return redirect('index')
 
 def logout(request):
     auth.logout(request)
@@ -46,7 +46,7 @@ def cadastro(request):
     try:
         validate_email(email)
     except:
-        messages.error(request, 'Email invalido')
+        messages.error(request, 'Email inválido')
         return render (request, 'accounts/cadastro.html')
 
     if len(senha) < 6:
@@ -66,3 +66,26 @@ def cadastro(request):
     user = User.objects.create_user(username=usuario, email=email, password=senha, first_name=nome, last_name=sobrenome)
     user.save()
     return redirect ('login')
+
+@login_required(redirect_field_name='login')
+def dashboard(request):
+    if request.method != 'POST':
+        form = FormContato()
+        return render (request, 'accounts/dashboard.html', {'form':form})
+
+    form = FormContato(request.POST, request.FILES)
+
+    if not form.is_valid():
+        messages.error(request, 'Erro ao enviar formulário')
+        form = FormContato()
+        return render(request, 'accounts/dashboard.html', {'form': form})
+
+    descricao = request.POST.get('descricao')
+    
+    if len(descricao) < 5:
+        messages.error(request, 'Erro descrição')
+        form = FormContato(request.POST)
+        return render(request, 'accounts/dashboard.html', {'form': form})
+    form.save()
+    messages.success(request, f'Contato {request.POST.get("nome")} salvo com sucesso')
+    return redirect('dashboard')

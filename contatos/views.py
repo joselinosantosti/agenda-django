@@ -5,7 +5,9 @@ from django.core.paginator import Paginator
 from django.db.models import Q, Value
 from django.db.models.functions import Concat
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required()
 def index(request):
     contatos = Contato.objects.order_by('id').filter(mostrar=True)
     paginator = Paginator(contatos, 10)
@@ -17,6 +19,7 @@ def index(request):
         'contatos':contatos
     })
 
+@login_required()
 def ver_contato(request, contato_id):
     contato = get_object_or_404(Contato, id=contato_id)
     if not contato.mostrar:
@@ -25,6 +28,7 @@ def ver_contato(request, contato_id):
         'contato':contato
     })
 
+@login_required()
 def busca(request):
     busca = request.GET.get('busca')
     

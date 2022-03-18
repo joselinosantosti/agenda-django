@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block 'content' %}
-
+  {% include 'partial/_nav.html' %}
     <h1 class="mt-5">Minha agenda</h1>
 
     <form action="{% url 'busca' %}" class="mt-5">
