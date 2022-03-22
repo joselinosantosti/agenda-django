@@ -3,13 +3,14 @@
 
 {% block 'content' %}
   {% include 'partial/_nav.html' %}
+  <div class="container">
     <h1 class="mt-5">Minha agenda</h1>
 
     <form action="{% url 'busca' %}" class="mt-5">
       <div class="input-group mb-3">
         <input type="text" name="busca" class="form-control" placeholder="Pesquisar" value="{{ request.GET.busca }}">
         <div class="input-group-append">
-          <button class="input-group-text bg-primary text-white">Buscar</button>
+          <button class="input-group-text btn btn-lg gradient btn-block text-white">Buscar</button>
         </div>
       </div>
     </form>
@@ -48,11 +49,12 @@
         <ul class="pagination">
           {% for pagina in contatos.paginator.page_range %}
             {% if contatos.number == pagina %}
-              <li class="page-item active"><a class="page-link" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
+              <li class="page-item active"><a class="page-link btn-red" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
             {% else %}
               <li class="page-item"><a class="page-link" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
             {% endif %}
           {% endfor %}
         </ul>
     </nav>
+  </div>
 {% endblock %}

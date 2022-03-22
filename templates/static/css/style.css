@@ -1,0 +1,46 @@
+nav a:hover {
+	color: #ff4169;
+}
+.card-login {
+    padding: 30px 0 0 0;
+    width: 350px;
+    margin: 200px auto;
+}
+.card-home {
+	padding: 30px 0 0 0;
+	width: 100%;
+	margin: 0 auto;
+}
+.gradient {
+	background: linear-gradient(160deg, #ff4169, #7c26f8);
+}
+.card-lista-tarefas {
+	padding: 30px 0 0 0;
+	width: 100%;
+	margin: 0 auto;
+}
+.card-nova-tarefa {
+	padding: 30px 0 0 0;
+	width: 100%;
+	margin: 0 auto;
+}
+.btn-red {
+	background-color: #ff4169;
+}
+.text-red {
+	color: #ff4169;
+}
+#chart_div {
+	width: 100%;
+}
+.item-menu-home {
+	font-size: 50px;
+	text-align: center;
+}
+.item-menu-home p {
+	font-size: 25px;
+}
+.item-menu-home:hover {
+	transition: 0.5s;
+	text-decoration: none;
+}
