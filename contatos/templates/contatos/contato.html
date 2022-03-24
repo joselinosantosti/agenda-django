@@ -4,34 +4,39 @@
 {%block titulo%}{{contato.nome}} {{contato.sobrenome}}|{%endblock%}
 
 {% block 'content' %}
-<h1 class="mt-5">{{contato.nome}} {{contato.sobrenome}}</h1>
-
-{% if contato.foto %}
-  <img width="150" height="150" src="{{contato.foto.url}}" class="rounded-circle">
-{% else %}
-  <img width="150" height="150" src="{% static 'images/profile.png' %}">
-{% endif %}
-
-<dl>
-  <dt>ID</dt>
-  <dd>{{contato.id}}</dd>
-
-  <dt>Telefone</dt>
-  <dd>{{contato.telefone}}</dd>
-
-  <dt>E-mail</dt>
-  <dd>{{contato.email}}</dd>
-
-  <dt>Data criação</dt>
-  <dd>{{contato.data_criacao|date:'d/m/Y H:m:s'}}</dd>
-
-  <dt>Categoria</dt>
-  <dd>{{contato.categoria}}</dd>
-
-  <dt>Descrição</dt>
-  <dd>
-   {{contato.descricao}}
-  </dd>
-</dl>
-
+<div class="container col d-flex justify-content-center">
+  <div class="card text-center text-white gradient shadow-lg" style="width: 18rem;">
+    <div class="justify-content-center m-2 mt-4">
+      {% if contato.foto %}
+        <img width="150" height="150" src="{{contato.foto.url}}" class="rounded-circle">
+      {% else %}
+        <img width="150" height="150" src="{% static 'images/profile.png' %}" class="card-img-top">
+      {% endif %}
+    </div>
+    <div class="card-body">
+      <h1>{{contato.nome}} {{contato.sobrenome}}</h1>
+      <dl>
+        <dt>ID</dt>
+        <dd>{{contato.id}}</dd>
+    
+        <dt>Telefone</dt>
+        <dd>{{contato.telefone}}</dd>
+    
+        <dt>E-mail</dt>
+        <dd>{{contato.email}}</dd>
+    
+        <dt>Data criação</dt>
+        <dd>{{contato.data_criacao|date:'d/m/Y H:m:s'}}</dd>
+    
+        <dt>Categoria</dt>
+        <dd>{{contato.categoria}}</dd>
+    
+        <dt>Descrição</dt>
+        <dd>
+        {{contato.descricao}}
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>
 {% endblock %}
