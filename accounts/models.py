@@ -1,8 +1,7 @@
-from django.db import models
-from contatos.models import Contato
+from empregados.models import Empregado
 from django import forms
 
-class FormContato(forms.ModelForm):
+class FormEmpregado(forms.ModelForm):
     class Meta:
-        model = Contato
+        model = Empregado
         exclude = ('mostrar',)

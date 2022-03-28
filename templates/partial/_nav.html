@@ -7,10 +7,10 @@
   </a>
   <ul class="nav">
     <li class="nav-item">
-      <a class="nav-link text-light" href="/">Contatos</a>
+      <a class="nav-link text-light" href="{% url 'index' %}">Contatos</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-light" href="accounts/dashboard">Dashboard</a>
+      <a class="nav-link text-light" href="{% url 'dashboard' %}">Dashboard</a>
     </li>
     <li class="nav-item">
       <a class="nav-link text-light" href="{% url 'logout' %}">{% if request.user == 'anonimous' %}Login{% else %}<i class="fa fa-power-off"></i> Sair{% endif %}</a>

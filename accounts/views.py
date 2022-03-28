@@ -3,8 +3,8 @@ from django.contrib import messages, auth
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import FormContato
-from contatos.models import Contato
+from .models import FormEmpregado
+from empregados.models import Empregado
 from django.db.models import Count
 import json
 
@@ -73,8 +73,8 @@ def cadastro(request):
 @login_required(redirect_field_name='login')
 def dashboard(request):
 
-    categorias = Contato.objects.values('categoria')
-    print(categorias)
-    categorias = json.dumps(['4', 't', '5'])
+    departamentos = Empregado.objects.values('departamento')
+    print(departamentos)
+    departamentos = json.dumps(['4', 't', '5'])
 
-    return render (request, 'accounts/dashboard.html', {'categorias':categorias})
+    return render (request, 'accounts/dashboard.html', {'departamentos':departamentos})

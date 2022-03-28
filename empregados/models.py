@@ -1,20 +1,20 @@
 from django.db import models
 from django.utils import timezone
 
-class Categoria(models.Model):
+class Departamento(models.Model):
     nome = models.CharField(max_length=255)
 
     def __str__(self):
         return self.nome
 
-class Contato(models.Model):
+class Empregado(models.Model):
     nome = models.CharField(max_length=200)
     sobrenome = models.CharField(max_length=255, blank=True)
     telefone = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
-    data_criacao = models.DateTimeField(default=timezone.now)
+    aniversario = models.DateField()
     descricao = models.TextField(blank=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.DO_NOTHING)
+    departamento = models.ForeignKey(Departamento, on_delete=models.DO_NOTHING)
     mostrar = models.BooleanField(default=True)
     foto = models.ImageField(blank=True, upload_to='fotos/%Y/%m/%d/')
 

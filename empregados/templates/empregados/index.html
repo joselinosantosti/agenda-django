@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{%block titulo%}Contatos{%endblock%}
+{%block titulo%}Empregados{%endblock%}
 
 {% block 'content' %}
   {% include 'partial/_nav.html' %}
 
   <div class="container">
     {% include 'partial/_messages.html' %}
-    <h1 class="mt-5">Contatos</h1>
+    <h1 class="mt-5">Empregados</h1>
 
     <form action="{% url 'busca' %}" class="mt-5">
       <div class="input-group mb-3">
@@ -27,32 +27,34 @@
         <th>Nome</th>
         <th>Sobrenome</th>
         <th>Telefone</th>
-        <th>Categoria</th>
+        <th>Aniversário</th>
+        <th>Departamento</th>
         </tr>
     </thead>
     <tbody>
-        {% for contato in contatos %}
+        {% for empregado in empregados %}
           <tr>
-              <td>{{contato.id}}</td>
+              <td>{{empregado.id}}</td>
               <td>
-                {% if contato.foto %}
-                  <img width="25" height="25" src="{{contato.foto.url}}" class="rounded-circle">
+                {% if empregado.foto %}
+                  <img width="25" height="25" src="{{empregado.foto.url}}" class="rounded-circle">
                 {% else %}
                   <img width="25" height="25" src="{% static 'images/profile.png' %}">
                 {% endif %}
               </td>
-              <td><a href="{% url 'contato' contato.id %}"> {{contato.nome}}</a></td>
-              <td>{{contato.sobrenome}}</td>
-              <td>{{contato.telefone}}</td>
-              <td>{{contato.categoria}}</td>
+              <td><a href="{% url 'empregado' empregado.id %}"> {{empregado.nome}}</a></td>
+              <td>{{empregado.sobrenome}}</td>
+              <td>{{empregado.telefone}}</td>
+              <td>{{empregado.aniversario|date:'d/m/Y'}}</td>
+              <td>{{empregado.departamento}}</td>
           </tr>
         {% endfor %}
     </tbody>
     </table>
     <nav class="pull-right">
         <ul class="pagination">
-          {% for pagina in contatos.paginator.page_range %}
-            {% if contatos.number == pagina %}
+          {% for pagina in empregados.paginator.page_range %}
+            {% if empregados.number == pagina %}
               <li class="page-item active"><a class="page-link bg-danger" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
             {% else %}
               <li class="page-item"><a class="page-link" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
