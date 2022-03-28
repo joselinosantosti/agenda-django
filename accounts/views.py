@@ -4,6 +4,9 @@ from django.core.validators import validate_email
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import FormContato
+from contatos.models import Contato
+from django.db.models import Count
+import json
 
 def login(request):
     if request.method != 'POST':
@@ -69,23 +72,9 @@ def cadastro(request):
 
 @login_required(redirect_field_name='login')
 def dashboard(request):
-    if request.method != 'POST':
-        form = FormContato()
-        return render (request, 'accounts/dashboard.html', {'form':form})
 
-    form = FormContato(request.POST, request.FILES)
+    categorias = Contato.objects.values('categoria')
+    print(categorias)
+    categorias = json.dumps(['4', 't', '5'])
 
-    if not form.is_valid():
-        messages.error(request, 'Erro ao enviar formulário')
-        form = FormContato()
-        return render(request, 'accounts/dashboard.html', {'form': form})
-
-    descricao = request.POST.get('descricao')
-    
-    if len(descricao) < 5:
-        messages.error(request, 'Erro descrição')
-        form = FormContato(request.POST)
-        return render(request, 'accounts/dashboard.html', {'form': form})
-    form.save()
-    messages.success(request, f'Contato {request.POST.get("nome")} salvo com sucesso')
-    return redirect('dashboard')
+    return render (request, 'accounts/dashboard.html', {'categorias':categorias})

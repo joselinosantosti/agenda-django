@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{%block titulo%}Contatos{%endblock%}
+
 {% block 'content' %}
   {% include 'partial/_nav.html' %}
 
   <div class="container">
     {% include 'partial/_messages.html' %}
-    <h1 class="mt-5">Minha agenda</h1>
+    <h1 class="mt-5">Contatos</h1>
 
     <form action="{% url 'busca' %}" class="mt-5">
       <div class="input-group mb-3">
@@ -47,11 +49,11 @@
         {% endfor %}
     </tbody>
     </table>
-    <nav>
+    <nav class="pull-right">
         <ul class="pagination">
           {% for pagina in contatos.paginator.page_range %}
             {% if contatos.number == pagina %}
-              <li class="page-item active"><a class="page-link btn-red" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
+              <li class="page-item active"><a class="page-link bg-danger" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
             {% else %}
               <li class="page-item"><a class="page-link" href="?p={{pagina}}&busca={{request.GET.busca}}&total={{request.GET.total}}">{{pagina}}</a></li>
             {% endif %}

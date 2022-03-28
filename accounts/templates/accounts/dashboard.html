@@ -1,8 +1,34 @@
 {% extends 'base.html' %}
-{%block titulo%}Dashboard de {{user}}{%endblock%}
+{%block titulo%}Dashboard{%endblock%}
 {% block 'content' %}
     {% include 'partial/_nav.html' %}
     <div class="container">
         <h1 class="mt-5">Dashboard</h1>
+        <script>  
+            google.charts.load("current", { packages: ["corechart"] });
+            google.charts.setOnLoadCallback(drawChart);
+    
+            function drawChart() {
+    
+                var data = new google.visualization.DataTable();
+                data.addColumn("string", "Topping");
+                data.addColumn("number", "");
+                data.addRows([
+                    {% for c, total in categorias.item %}
+                        [{{c}}, {{total}}],
+                    {% endfor %}
+                ]);
+                
+                var options = { title: "Categorias", legend: "none", width: 600, backgroundColor: "transparent", colors: ["#ff4169"], textColor: "#ffffff", height: 300, width:1000 };
+                var chart = new google.visualization.ColumnChart(document.getElementById("chart_div"));
+                chart.draw(data, options);
+            }
+            </script>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <div id="chart_div"></div>
+            </div>
+        </div>
     </div>
 {% endblock %}
