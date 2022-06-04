@@ -20,12 +20,12 @@ def index(request):
     })
 
 @login_required()
-def empregado(request, Empregado_id):
-    Empregado = get_object_or_404(Empregado, id=Empregado_id)
+def empregado(request, empregado_id):
+    empregado = get_object_or_404(Empregado, id=empregado_id)
     if not Empregado.mostrar:
         raise Http404
-    return render(request, 'empregados/Empregado.html', {
-        'Empregado':Empregado
+    return render(request, 'empregados/empregado.html', {
+        'empregado':empregado
     })
 
 @login_required()
