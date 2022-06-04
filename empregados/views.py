@@ -1,11 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from.models import Empregado
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.core.paginator import Paginator
 from django.db.models import Q, Value
 from django.db.models.functions import Concat
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.template import loader
 
 @login_required()
 def index(request):
@@ -49,3 +50,11 @@ def busca(request):
     return render(request, 'empregados/busca.html', {
         'empregados':empregados
     })
+
+def error404(request, exception):
+    template = loader.get_template('empregados/404.html')
+    return HttpResponse(content=template.render(), content_type='text/html; charset=utf8', status=404)
+
+def error500(request):
+    template = loader.get_template('empregados/500.html')
+    return HttpResponse(content=template.render(), content_type='text/html; charset=utf8', status=500)
